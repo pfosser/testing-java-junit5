@@ -2,7 +2,10 @@ package guru.springframework.sfgpetclinic.controllers;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.time.Duration;
+
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -29,6 +32,29 @@ class IndexControllerTest {
 	@DisplayName("Test exception")
 	void testOupsHandler() {
 		assertThrows(ValueNotFoundException.class, () -> indexController.oupsHandler());
+	}
+
+	@Disabled("Demo of timeout")
+	@Test
+	void testTimeOut() {
+		assertTimeout(Duration.ofMillis(100), () -> {
+			Thread.sleep(2000);
+
+			System.out.println("I got here");
+		});
+	}
+
+	@Disabled("Demo of timeout")
+	@Test
+	void testTimeOutPreempt() {
+		// This one spawns a thread.
+		// You can expect to not see the console message because the
+		// thread is killed if execution exceeds the duration tested
+		assertTimeoutPreemptively(Duration.ofMillis(100), () -> {
+			Thread.sleep(2000);
+
+			System.out.println("I got here 21264158");
+		});
 	}
 
 }
