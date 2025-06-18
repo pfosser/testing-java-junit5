@@ -1,6 +1,10 @@
 package guru.springframework.sfgpetclinic.controllers;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTimeout;
+import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 import java.time.Duration;
 
@@ -57,4 +61,15 @@ class IndexControllerTest {
 		});
 	}
 
+	@Test
+	void testAssumptionTrue() {
+		// Useful to enable a test for a certain enviroment.
+		// The test doesn't fail if the assumption is not met.
+		assumeTrue("GURU".equalsIgnoreCase(System.getenv("GURU_RUNTIME")));
+	}
+
+	@Test
+	void testAssumptionTrueAssumptioIsTrue() {
+		assumeTrue("GURU".equalsIgnoreCase("GURU"));
+	}
 }
