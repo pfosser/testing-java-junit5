@@ -4,8 +4,10 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.hamcrest.MatcherAssert;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
+@Tag("model")
 class OwnerTest {
 
 	@Test
