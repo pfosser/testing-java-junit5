@@ -10,11 +10,12 @@ import java.util.Set;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import guru.springframework.sfgpetclinic.ControllerTest;
 import guru.springframework.sfgpetclinic.fauxspring.ModelMapImpl;
 import guru.springframework.sfgpetclinic.model.Vet;
 import guru.springframework.sfgpetclinic.services.map.VetMapService;
 
-class VetControllerTest {
+class VetControllerTest implements ControllerTest {
 
 	private VetController controller;
 
@@ -29,10 +30,10 @@ class VetControllerTest {
 
 	@Test
 	void testListVets() {
-		
+
 		ModelMapImpl model = new ModelMapImpl();
 		String view = controller.listVets(model);
-		
+
 		assertEquals("vets/index", view);
 		assertNotEquals(0, model.getMap().size());
 		assertTrue(model.getMap().containsKey("vets"));
