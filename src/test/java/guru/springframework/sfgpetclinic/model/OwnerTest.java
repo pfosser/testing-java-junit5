@@ -11,12 +11,14 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.ArgumentsSource;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.EnumSource;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import guru.springframework.sfgpetclinic.CustomArgsProvider;
 import guru.springframework.sfgpetclinic.ModelTest;
 
 class OwnerTest implements ModelTest {
@@ -74,6 +76,13 @@ class OwnerTest implements ModelTest {
 	@ParameterizedTest(name = "{displayName} - [{index}] {arguments}")
 	@MethodSource("getArgs")
 	void fromMethodTest(String stateName, int val1, int val2) {
+		System.out.println(stateName + " = " + val1 + ":" + val2);
+	}
+
+	@DisplayName("Custom provider test")
+	@ParameterizedTest(name = "{displayName} - [{index}] {arguments}")
+	@ArgumentsSource(CustomArgsProvider.class)
+	void fromCustomProviderTest(String stateName, int val1, int val2) {
 		System.out.println(stateName + " = " + val1 + ":" + val2);
 	}
 
